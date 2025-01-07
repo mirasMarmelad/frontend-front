@@ -1,0 +1,93 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the container takes at least full viewport height */
+  }
+  
+  .profile-content {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+ 
+    padding: 20px; /* Add some padding */
+    flex: 1; /* Allow this section to take up available space */
+  }
+  
+  .profile-details {
+    display: flex; /* Use flexbox for image and info layout */
+    justify-content: center; /* Center the content horizontally */
+    align-items: flex-start; /* Align items at the top */
+    margin-bottom: 20px; /* Add space below profile details */
+  }
+  
+  .profile-image {
+    display: flex; /* Allow stacking of image and button */
+    flex-direction: column; /* Stack image and button vertically */
+    align-items: center; /* Center items horizontally */
+    margin-right: 20px; /* Add space between image/button and info */
+  }
+  
+  .profile-image img {
+    width: 250px; /* Set width for the profile image */
+    height: 300px; /* Set height for the profile image to make it rectangular */
+    object-fit: cover; /* Cover the area without stretching */
+    border-radius: 8px; /* Optional: Slightly round the corners */
+    margin-bottom: 8px; /* Space below the image */
+  }
+  
+  .update-profile-button {
+    padding: 12px 60px; /* Button padding */
+    background-color: #ffa500; /* Button color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  .update-profile-button:hover {
+    background-color: #ff8c00; /* Darker color on hover */
+  }
+  
+
+  .liked-mangas {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .manga-row {
+    display: contents;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  
+  .manga-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+    width: 160px;
+  }
+  
+  .manga-item img {
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .manga-item p {
+    margin-top: 8px;
+    font-size: 14px;
+    text-align: center;
+  }
+  

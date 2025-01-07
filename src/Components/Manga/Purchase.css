@@ -1,0 +1,75 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.purchase-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the container takes at least full viewport height */
+}
+
+.purchase-content {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    padding: 20px; /* Add some padding */
+    flex: 1; /* Allow this section to take up available space */
+}
+
+.purchase-manga-list {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap onto the next line */
+    justify-content: center; /* Center the content horizontally */
+}
+
+.purchase-manga-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px; /* Space around each manga item */
+    border: 1px solid #ddd; /* Border around manga items */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Padding inside the item */
+    width: 200px; /* Fixed width for each item */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.purchase-manga-item img {
+    width: 150px; /* Set width for the manga cover */
+    height: 200px; /* Set height for the manga cover */
+    object-fit: cover; /* Cover the area without stretching */
+    border-radius: 8px; /* Rounded corners for the image */
+}
+
+.purchase-button-group {
+    display: flex; /* Use flexbox for button layout */
+    justify-content: space-between; /* Space between buttons */
+    margin-top: 10px; /* Space above buttons */
+}
+
+.purchase-remove-button,
+.purchase-buy-button {
+    padding: 10px 15px; /* Button padding */
+    background-color: #ff6347; /* Remove button color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin: 0 5px; /* Space between buttons */
+}
+
+.purchase-buy-button {
+    background-color: #28a745; /* Buy button color */
+}
+
+.purchase-remove-button:hover {
+    background-color: #e55; /* Darker color on hover for remove button */
+}
+
+.purchase-buy-button:hover {
+    background-color: #218838; /* Darker color on hover for buy button */
+}

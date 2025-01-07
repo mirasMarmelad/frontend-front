@@ -1,0 +1,85 @@
+.user-info-update {
+    max-width: 800px; /* Increased width for better layout */
+    margin: 20px auto; /* Center the form on the page */
+    padding: 20px; /* Padding inside the form */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #fff; /* White background */
+}
+
+h2 {
+    text-align: center; /* Center the heading */
+    color: #333; /* Dark color for the heading */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+.update-form {
+    display: flex; /* Use flexbox for the form layout */
+}
+
+.form-container {
+    display: flex; /* Flex container for columns */
+    width: 100%; /* Full width for the container */
+}
+
+.image-column {
+    flex: 1; /* Flex-grow for the image column */
+    padding-right: 20px; /* Space between columns */
+    text-align: center; /* Center content in image column */
+}
+
+.input-column {
+    flex: 2; /* Flex-grow for the input column */
+}
+
+label {
+    display: block; /* Block display for labels */
+    margin-bottom: 10px; /* Space below each label */
+    font-weight: bold; /* Bold font for labels */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select {
+    width: 100%; /* Full width inputs */
+    padding: 10px; /* Padding inside inputs */
+    margin-top: 5px; /* Space above inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 14px; /* Font size for inputs */
+}
+
+input[type="file"] {
+    margin-top: 5px; /* Space above file input */
+}
+
+button {
+    background-color: #e69c0a; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    padding: 10px 15px; /* Padding inside the button */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size for buttons */
+    margin-top: 10px; /* Space above buttons */
+    transition: background-color 0.3s ease; /* Smooth background change */
+}
+
+button:hover {
+    background-color: #d68b00; /* Darker color on hover */
+}
+
+.error-message {
+    color: red; /* Red color for error messages */
+    text-align: center; /* Center error messages */
+    margin-top: 10px; /* Space above error messages */
+}
+
+.user-image {
+    width: 150px; /* Set a fixed width for the image */
+    height: 150px; /* Set a fixed height for the image */
+    border-radius: 50%; /* Circular image */
+    object-fit: cover; /* Ensure the image covers the container */
+}

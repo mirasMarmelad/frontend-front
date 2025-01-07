@@ -1,0 +1,56 @@
+.app-bar {
+    display: flex;
+    position: relative; /* Make sure it can stack with other elements */
+    z-index: 2; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 120px; /* Padding around the bar */
+    background-color: #e69c0a; /* Background color */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.logo-container {
+    flex: 1; /* Takes up space on the left */
+}
+
+.logo {
+    height: 50px; /* Logo height */
+}
+
+.nav-links {
+    flex: 2; /* Takes up space in the center */
+    display: flex;
+    justify-content: center; /* Center the links */
+}
+
+.nav-link {
+    margin: 0 15px; /* Space between links */
+    text-decoration: none; /* Remove underline */
+    color: white; /* Link color */
+    font-weight: bold; /* Bold links */
+}
+
+.nav-link:hover {
+    color: #ffa500; /* Color on hover */
+}
+
+.user-profile {
+    flex: 1; /* Takes up space on the right */
+    display: flex;
+    align-items: center; /* Center the profile icon and text */
+    justify-content: flex-end; /* Align to the right */
+}
+
+.profile-icon {
+    width: 40px; /* Profile icon size */
+    height: 40px; /* Profile icon size */
+    border-radius: 50%; /* Circular profile icon */
+    margin-right: 10px; /* Space between icon and username */
+}
+
+.username {
+    font-weight: bold; /* Bold username text */
+    color: white; /* Username color */
+    text-decoration: none; /* Ensure there's no underline */
+    font-size: 20px;
+}

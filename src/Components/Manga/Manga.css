@@ -1,0 +1,115 @@
+.manga-page {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    min-height: 100vh; /* Ensure it takes the full height of the viewport */
+    position: relative;
+}
+
+
+.manga-container {
+    background-color: white;
+    position: relative; 
+    display: flex; /* Set to flex to enable side-by-side layout */
+    flex-direction: row; /* Set direction to row to place columns in one row */
+    max-width: 1000px; /* Adjust max-width as needed */
+    margin: auto; /* Center the container */
+    padding: 20px; /* Add padding around the container */
+    border: 1px solid #ccc; /* Optional border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.background-image {
+    position: absolute; /* Изменено на absolute, чтобы оставаться позади контента */
+    top: 0; /* Привязка к верхней части */
+    left: 0; /* Привязка к левой части */
+    right: 0; /* Привязка к правой части */
+    height: 450px; /* Укажите необходимую высоту */
+    background-size: cover; /* Убедитесь, что изображение занимает весь фон */
+    background-position: center; /* Центрируем изображение */
+    z-index: 0; /* Убедитесь, что фон ниже контента */
+}
+
+.background-image::before {
+    content: ""; /* Псевдоэлемент должен иметь содержимое */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Затемнение: черный с 50% прозрачностью */
+    z-index: 1; /* Убедитесь, что затемняющий слой выше фона */
+}
+
+
+.manga-image {
+    flex: 1; /* Left column takes up 1 part of the flex space */
+    padding-right: 20px; /* Space between image and text */
+}
+
+.manga-image img {
+    max-width: 100%; /* Image responsive */
+    border-radius: 8px; /* Rounded corners for the image */
+}
+
+.manga-info {
+    flex: 2; /* Right column takes up 2 parts of the flex space */
+    display: flex;
+    flex-direction: column; /* Stack the content vertically in the right column */
+}
+
+.manga-title {
+    font-size: 24px; /* Title font size */
+    font-weight: bold; /* Bold title */
+    margin-bottom: 10px; /* Space below the title */
+    display: flex; /* Use flexbox to align items in a row */
+    justify-content: space-between; /* Push name to left and likes to right */
+    align-items: center; /* Vertically align items in the center */
+}
+
+
+.manga-description {
+    margin-bottom: 10px; /* Space below description */
+    font-size: 16px; /* Description font size */
+}
+
+.manga-categories {
+    margin-bottom: 20px; /* Space below categories */
+    font-size: 19px; /* Categories font size */
+}
+
+.manga-details {
+    border-top: 1px solid #ccc; /* Optional divider */
+    padding-top: 10px; /* Space above details */
+}
+
+.manga-details h3 {
+    margin: 10px 0; /* Space above and below the heading */
+}
+
+.manga-details ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.manga-details li {
+    margin-bottom: 8px; /* Space between details */
+}
+
+.add-to-purchase {
+    background-color: #00ff08; /* Blue background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px 95px; /* Padding around text */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-top: 10px; /* Space above the button */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+   font-weight: bold;
+}
+
+.add-to-purchase:hover {
+    background-color: #00ff08; /* Darker blue on hover */
+}
