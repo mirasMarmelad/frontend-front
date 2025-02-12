@@ -13,20 +13,37 @@ const MangaPage = () => {
 
     useEffect(() => {
         const fetchManga = async () => {
+            const cachedData = localStorage.getItem(`manga-${id}`);
+            const cachedTime = localStorage.getItem(`manga-${id}-timestamp`);
+            if (cachedTime && Date.now() - cachedTime > 3600000) { 
+                localStorage.removeItem(`manga-${id}`);
+                localStorage.removeItem(`manga-${id}-timestamp`);
+            }
+            if (cachedData) {
+                console.log("📌 Loaded from cache:", JSON.parse(cachedData)); 
+                setManga(JSON.parse(cachedData));
+                setLoading(false);
+                return
+            }
+    
             try {
                 const response = await axios.get(`http://localhost:8000/manga/${id}`, { withCredentials: true });
-                setManga(response.data.manga); // Set the manga state
+                console.log("🌍 Loaded from API:", response.data.manga); // Log API load
+                setManga(response.data.manga);
+                localStorage.setItem(`manga-${id}`, JSON.stringify(response.data.manga));
+                localStorage.setItem(`manga-${id}-timestamp`, Date.now()); 
+
             } catch (err) {
                 setError("Error fetching manga data.");
-                console.error(err);
+                console.error("❌ API Error:", err);
             } finally {
-                setLoading(false); // Stop loading
+                setLoading(false);
             }
         };
-
-        fetchManga(); // Call the fetch function
+    
+        fetchManga();
     }, [id]);
-
+    
     const handleToggleLike = async () => {
         if (!manga) return; // Ensure manga data is available
         const url = manga.isLiked 

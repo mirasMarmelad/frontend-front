@@ -12,6 +12,7 @@ import PurchasePage from './Components/Manga/Purchase';
 
 function App() {
   return (
+    
     <Router>
       <Routes>
         <Route path="/register" element={<RegistrationPage />} />
@@ -26,6 +27,7 @@ function App() {
         {/* Add other routes as necessary */}
       </Routes>
     </Router>
+    
   );
 }
 

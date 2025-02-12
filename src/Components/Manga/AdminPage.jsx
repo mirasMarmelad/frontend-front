@@ -141,6 +141,7 @@ const AdminPage = () => {
       setImageFile(null);
       setIsModalOpen(false);
       window.location.reload();
+      alert("New book was added")
     } catch (err) {
       console.error("Error adding manga:", err);
       setError("Failed to add new manga.");

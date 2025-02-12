@@ -7,7 +7,7 @@ const RegistrationPage = () => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: '',
+    passwordHash: '',
     confirmPassword: '',
     lastName: '',
     firstName: '',
@@ -58,7 +58,7 @@ const RegistrationPage = () => {
     const requiredFields = [
       'username',
       'email',
-      'password',
+      'passwordHash',
       'confirmPassword',
       'lastName',
       'firstName',
@@ -79,7 +79,7 @@ const RegistrationPage = () => {
       return false;
     }
   
-    if (formData.password.length < 6 || formData.password.length > 21) {
+    if (formData.passwordHash.length < 6 || formData.passwordHash.length > 21) {
       setError('Password must be between 6 and 20 characters.');
       return false;
     }
@@ -89,7 +89,7 @@ const RegistrationPage = () => {
       return false;
     }
 
-    if (formData.password !== formData.confirmPassword) {
+    if (formData.passwordHash !== formData.confirmPassword) {
       setError('Passwords do not match.');
       return false;
     }
@@ -180,8 +180,8 @@ const RegistrationPage = () => {
           <label>Password:</label>
           <input
             type="password"
-            name="password"
-            value={formData.password}
+            name="passwordHash"
+            value={formData.passwordHash}
             onChange={handleChange}
             required
             className="form-input"
