@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarCheck, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-function Hero() {
+const Hero = React.memo(() => {
     const navigate = useNavigate();
     const [goUp, setGoUp] = useState(false);
 
@@ -156,6 +156,6 @@ function Hero() {
             </div>
         </>
     );
-}
+});
 
 export default Hero;

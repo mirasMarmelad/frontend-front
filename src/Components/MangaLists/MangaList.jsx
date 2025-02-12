@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './MangaList.css'; // Import CSS for styling
+import './MangaList.css';
 import AppBar from '../Helpers/Appbar';
 import Footer from '../Helpers/Footer';
 
@@ -9,25 +9,26 @@ const MangaListPage = () => {
     const [mangas, setMangas] = useState([]);
     const [allMangas, setAllMangas] = useState([]);
     const [collaborativeMangas,setAllCollaborative] = useState([]);
-    const [mainAllMangas, setMainAllMangas] = useState([]); // Ensure it's initialized as an empty array
+    const [mainAllMangas, setMainAllMangas] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [search, setSearch] = useState('');
-    const [filter, setFilter] = useState('forYou'); // Added state for filtering
-    const [selectedAuthor, setSelectedAuthor] = useState(''); // State for selected author
-    const [selectedSort, setSelectedSort] = useState('-_id')
-    const [selectedCategory, setSelectedCategory] = useState(''); // State for selected category
-    const [authors, setAuthors] = useState([]); // State for authors
-    const [categories, setCategories] = useState([]); // State for categories
+    const [filter, setFilter] = useState('forYou'); 
+    const [selectedAuthor, setSelectedAuthor] = useState('');
+    const [selectedSort, setSelectedSort] = useState('-_id');
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [authors, setAuthors] = useState([]);
+    const [categories, setCategories] = useState([]);
 
-    // Fetch authors and categories on component mount
     useEffect(() => {
         const fetchAuthorsAndCategories = async () => {
             try {
+                console.log('Fetching authors and categories...');
                 const authorsResponse = await axios.get('http://localhost:8000/manga/getAuthors');
                 const categoriesResponse = await axios.get('http://localhost:8000/manga/getCategories');
                 setAuthors(authorsResponse.data.data);
                 setCategories(categoriesResponse.data.data);
+                console.log('Authors and categories fetched successfully');
             } catch (err) {
                 console.error('Error fetching authors and categories:', err);
             }
@@ -36,14 +37,15 @@ const MangaListPage = () => {
         fetchAuthorsAndCategories();
     }, []);
 
-    // Function to fetch mangas based on query
     const fetchMainAllMangas = async (query = '', author = '', category = '', sort='') => {
         try {
+            console.log(`Fetching mangas with query: ${query}, author: ${author}, category: ${category}, sort: ${sort}`);
             const response = await axios.get(`http://localhost:8000/manga/all?q=${query}&author=${author}&category=${category}&sort=${sort}`, { withCredentials: true });
-            setMainAllMangas(response.data.data || []); // Set to empty array if data is null
+            setMainAllMangas(response.data.data || []);
+            console.log('Mangas fetched successfully');
         } catch (err) {
             setError('Error fetching mangas.');
-            console.error(err);
+            console.error('Error fetching mangas:', err);
         } finally {
             setLoading(false);
         }
@@ -52,11 +54,13 @@ const MangaListPage = () => {
     useEffect(() => {
         const fetchMangas = async () => {
             try {
+                console.log('Fetching recommended mangas...');
                 const response = await axios.get('http://localhost:8000/recomendations', { withCredentials: true });
                 setMangas(response.data.data); 
+                console.log('Recommended mangas fetched successfully');
             } catch (err) {
                 setError('Error fetching mangas.');
-                console.error(err);
+                console.error('Error fetching recommended mangas:', err);
             } finally {
                 setLoading(false);
             }
@@ -64,22 +68,27 @@ const MangaListPage = () => {
 
         const fetchAllMangas = async () => {
             try {
+                console.log('Fetching all mangas...');
                 const response = await axios.get('http://localhost:8000/manga/all?sort=-_id&limit=5', { withCredentials: true });
-                setAllMangas(response.data.data || []); // Set to empty array if data is null
+                setAllMangas(response.data.data || []);
+                console.log('All mangas fetched successfully');
             } catch (err) {
                 setError('Error fetching mangas.');
-                console.error(err);
+                console.error('Error fetching all mangas:', err);
             } finally {
                 setLoading(false);
             }
         };
+
         const fetchCollMangas = async () => {
             try {
+                console.log('Fetching collaborative mangas...');
                 const response = await axios.get('http://localhost:8000/collaborative', { withCredentials: true });
                 setAllCollaborative(response.data.data); 
+                console.log('Collaborative mangas fetched successfully');
             } catch (err) {
                 setError('Error fetching mangas.');
-                console.error(err);
+                console.error('Error fetching collaborative mangas:', err);
             } finally {
                 setLoading(false);
             }
@@ -88,13 +97,12 @@ const MangaListPage = () => {
         fetchCollMangas();
         fetchMangas();
         fetchAllMangas();
-        fetchMainAllMangas(); // Initial fetch without query
+        fetchMainAllMangas();
     }, []);
 
     useEffect(() => {
-        // Fetch mangas when the search input, author, or category changes
-        fetchMainAllMangas(search, selectedAuthor, selectedCategory,selectedSort);
-    }, [search, selectedAuthor, selectedCategory,selectedSort]); // Dependency on search, author, and category
+        fetchMainAllMangas(search, selectedAuthor, selectedCategory, selectedSort);
+    }, [search, selectedAuthor, selectedCategory, selectedSort]);
 
     const filteredMangas = allMangas.filter(manga =>
         manga.name.toLowerCase().includes(search.toLowerCase())
@@ -105,20 +113,24 @@ const MangaListPage = () => {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault(); // Prevent form submission and page refresh
-        fetchMainAllMangas(search, selectedAuthor, selectedCategory,selectedSort); // Fetch based on the current search term
+        event.preventDefault();
+        console.log('Form submitted with search:', search);
+        fetchMainAllMangas(search, selectedAuthor, selectedCategory, selectedSort);
     };
 
     const handleAuthorChange = (event) => {
         setSelectedAuthor(event.target.value);
+        console.log('Selected author:', event.target.value);
     };
 
     const handleSortChange = (event) => {
         setSelectedSort(event.target.value);
+        console.log('Selected sort:', event.target.value);
     };
 
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);
+        console.log('Selected category:', event.target.value);
     };
 
     if (loading) {
@@ -130,16 +142,16 @@ const MangaListPage = () => {
     }
 
     const clearFilters = () => {
+        console.log('Clearing filters...');
         setSearch('');
         setSelectedAuthor('');
         setSelectedCategory('');
-        setSelectedSort('-_id'); // Assuming '-_id' is your default sort
-        fetchMainAllMangas(); // Re-fetch the mangas with default parameters
+        setSelectedSort('-_id');
+        fetchMainAllMangas();
     };
-    
 
     const displayMangas = filter === 'forYou' ? mangas :
-    filter === 'othersWatched' ? collaborativeMangas : filteredMangas;
+        filter === 'othersWatched' ? collaborativeMangas : filteredMangas;
 
     return (
         <div>
@@ -166,15 +178,20 @@ const MangaListPage = () => {
             </div>
 
             <div className="main-manga-list">
-                <h2>Каталог манги</h2>
-                <form onSubmit={handleSubmit}> {/* Use form for the search input */}
+                <h2  style={{
+      display: 'flex',
+      justifyContent: 'center', // Center horizontally
+      alignItems: 'center', // Center vertically
+      flexDirection: 'column', // Arrange items in a column
+    }}>Каталог манги</h2>
+                <form onSubmit={handleSubmit}>
                     <div className='main-filters'>
                         <div className='main-filter-search'>
                             <input 
                                 type="text" 
                                 placeholder='Поиск...' 
-                                value={search} // Set input value to state
-                                onChange={handleSearchChange} // Update search state on change
+                                value={search} 
+                                onChange={handleSearchChange}
                             />
                         </div>
                         <div className='main-filter-select-author'>
@@ -196,16 +213,14 @@ const MangaListPage = () => {
                                 <option value="-rating">От популярных до не популярных</option>
                                 <option value="rating">От не популярных к популярнам</option>
                             </select>
-                            <button onClick={clearFilters} className="clear-button">Clear</button> {/* Add this line */}
-
+                            <button onClick={clearFilters} className="clear-button">Clear</button>
                         </div>
-                        
                     </div>
                 </form>
 
                 <div className="main-manga-grid">
-                    {mainAllMangas.length === 0 ? ( // Check if there are no mangas
-                        <div>No such data found.</div> // Display message if no data found
+                    {mainAllMangas.length === 0 ? (
+                        <div>No such data found.</div>
                     ) : (
                         mainAllMangas.map((manga) => (
                             <Link to={`/manga/${manga.id}`} key={manga.id} className="main-manga-card">
